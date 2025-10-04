@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Sharp 365 Innovation - LMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #00a651;
+            --primary-dark: #008c46;
+            --secondary: #000000;
+            --light: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray: #e0e0e0;
+            --gray-dark: #333333;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-light);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--secondary);
+            color: var(--light);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--light);
+            border: 1px solid var(--light);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--light);
+            color: var(--secondary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--gray-dark);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            background-color: var(--primary);
+            color: var(--light);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: var(--gray-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .dashboard-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .dashboard-content {
+            flex: 1;
+        }
+
+        .dashboard-image {
+            flex: 1;
+            background-color: var(--secondary);
+            border-radius: var(--radius);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            box-shadow: var(--shadow);
+        }
+
+        .dashboard-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .dashboard-content p {
+            margin-bottom: 30px;
+            color: var(--gray-dark);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list i {
+            color: var(--primary);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--gray-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--gray-dark);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background-color: var(--secondary);
+            color: var(--light);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Developer Section */
+        .developer-section {
+            background-color: var(--gray-light);
+            padding: 60px 0;
+            margin-top: 40px;
+        }
+
+        .developer-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .developer-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .developer-info {
+            flex: 1;
+        }
+
+        .developer-info h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .developer-info p {
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+        }
+
+        .developer-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .developer-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background-color: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: var(--radius);
+            transition: background-color 0.3s;
+        }
+
+        .developer-links a:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-dark);
+        }
+
+        .modal-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .modal-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .modal-tab.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: var(--radius);
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+            min-height: 100vh;
+            background-color: var(--gray-light);
+        }
+
+        .dashboard-header {
+            background-color: var(--secondary);
+            color: var(--light);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .dashboard-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .dashboard-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .dashboard-nav a:hover {
+            color: var(--primary);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-weight: bold;
+        }
+
+        .dashboard-main {
+            padding: 30px 0;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: var(--radius);
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .dashboard-content {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .content-header h2 {
+            color: var(--secondary);
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--gray-light);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            color: var(--gray-dark);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .course-card {
+            background-color: var(--gray-light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .course-image {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+        }
+
+        .course-image.web-dev {
+            background-color: #2c3e50;
+        }
+
+        .course-image.cybersecurity {
+            background-color: #34495e;
+        }
+
+        .course-image.cloud {
+            background-color: #16a085;
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        .course-content h3 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .course-content p {
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray-dark);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--gray);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        .progress-85 {
+            width: 85%;
+        }
+
+        .progress-60 {
+            width: 60%;
+        }
+
+        .progress-30 {
+            width: 30%;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background-color: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: none;
+            flex-direction: column;
+        }
+
+        .chatbot-header {
+            background-color: var(--secondary);
+            color: var(--light);
+            padding: 15px;
+            border-top-left-radius: var(--radius);
+            border-top-right-radius: var(--radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            font-size: 0.9rem;
+        }
+
+        .message.bot {
+            background-color: var(--gray-light);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.user {
+            background-color: var(--primary);
+            color: var(--light);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--gray);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chatbot-input button {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Live Classes Section */
+        .live-classes {
+            margin-top: 30px;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .class-card {
+            background-color: var(--gray-light);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .class-card.upcoming {
+            border-left: 4px solid var(--primary);
+        }
+
+        .class-card.live {
+            border-left: 4px solid #ff0000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+
+        .class-card.completed {
+            border-left: 4px solid var(--gray);
+        }
+
+        .class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .class-status {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .status-upcoming {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .status-live {
+            background-color: #ff0000;
+            color: var(--light);
+        }
+
+        .status-completed {
+            background-color: var(--gray);
+            color: var(--light);
+        }
+
+        .class-card h3 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .class-card p {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .class-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray-dark);
+            font-size: 0.85rem;
+        }
+
+        /* Notes Section */
+        .notes-section {
+            margin-top: 30px;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .note-card {
+            background-color: var(--gray-light);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .note-card h3 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .note-card p {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .note-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray-dark);
+            font-size: 0.85rem;
+        }
+
+        .note-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .note-actions button {
+            background: none;
+            border: none;
+            color: var(--gray-dark);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Assignment Section */
+        .assignments-section {
+            margin-top: 30px;
+        }
+
+        .assignments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .assignment-item {
+            background-color: var(--gray-light);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .assignment-info h3 {
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .assignment-info p {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+        }
+
+        .assignment-due {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .due-date {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .due-soon {
+            color: #ff9800;
+        }
+
+        .overdue {
+            color: #f44336;
+        }
+
+        /* Form Button Styles */
+        .form-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Register Form Styles */
+        .register-form {
+            display: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .dashboard-image {
+                width: 100%;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .developer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+            }
+
+            .developer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Landing Page -->
+    <div id="landingPage">
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    <h1>Skill Sharp <span>365</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="loginBtn">Login</button>
+                    <button class="btn btn-primary" id="registerBtn">Register</button>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h2>Advanced Learning Management System</h2>
+                <p>Bridge the gap between education and industry with Skill Sharp 365 Innovation's comprehensive LMS platform for students, faculty, and administrators.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" id="demoDashboardBtn">View Demo Dashboard</button>
+                    <button class="btn btn-outline">Watch Demo</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Powerful Features</h2>
+                    <p>Our LMS provides all the tools needed for effective teaching and learning in today's digital environment.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open" aria-hidden="true"></i>
+                        </div>
+                        <h3>Course Management</h3>
+                        <p>Create, organize, and deliver courses with multimedia content, assignments, and assessments.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments" aria-hidden="true"></i>
+                        </div>
+                        <h3>Live Chat & Communication</h3>
+                        <p>Real-time messaging between students, faculty, and admins with AI-powered chatbot support.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        </div>
+                        <h3>Performance Analytics</h3>
+                        <p>Track student progress with detailed analytics, charts, and exportable reports.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-video" aria-hidden="true"></i>
+                        </div>
+                        <h3>Live Classes</h3>
+                        <p>Schedule and conduct live sessions with integrated video conferencing and attendance tracking.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tasks" aria-hidden="true"></i>
+                        </div>
+                        <h3>Assignment Management</h3>
+                        <p>Create, distribute, and grade assignments with automated due date tracking.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock" aria-hidden="true"></i>
+                        </div>
+                        <h3>Secure Authentication</h3>
+                        <p>Role-based access control with secure login for students, faculty, and administrators.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Services</h2>
+                    <p>Skill Sharp 365 Innovation offers comprehensive training and consultancy across multiple industries.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-network-wired" aria-hidden="true"></i>
+                        </div>
+                        <h3>Computer Networking</h3>
+                        <p>Comprehensive networking courses and certifications</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        </div>
+                        <h3>Cybersecurity</h3>
+                        <p>Protect digital assets with our security training</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                        </div>
+                        <h3>Web Development</h3>
+                        <p>Frontend and backend web development courses</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                        </div>
+                        <h3>Mobile App Development</h3>
+                        <p>iOS and Android application development</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud" aria-hidden="true"></i>
+                        </div>
+                        <h3>Cloud Management</h3>
+                        <p>AWS, Azure, and Google Cloud platform training</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-database" aria-hidden="true"></i>
+                        </div>
+                        <h3>Database Development</h3>
+                        <p>SQL, NoSQL, and data management courses</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Preview -->
+        <section class="dashboard-preview" id="dashboard">
+            <div class="container">
+                <div class="dashboard-container">
+                    <div class="dashboard-content">
+                        <h2>Interactive Dashboard</h2>
+                        <p>Our intuitive dashboard provides a personalized learning experience for students, teaching tools for faculty, and comprehensive management for administrators.</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Progress tracking with visual indicators</li>
+                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Course enrollment and management</li>
+                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Assignment submission and grading</li>
+                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Real-time notifications and alerts</li>
+                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Performance analytics and reports</li>
+                        </ul>
+                        <button class="btn btn-primary" id="viewDashboardBtn">View Demo Dashboard</button>
+                    </div>
+                    <div class="dashboard-image">
+                        <canvas id="dashboardChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>What Our Users Say</h2>
+                    <p>Hear from students, faculty, and administrators using our LMS platform.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The Skill Sharp 365 LMS has transformed how I manage my courses. The analytics help me identify students who need extra support."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <h4>John Davis</h4>
+                                <p>Faculty, Cybersecurity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"As a student, I love the intuitive interface and the ability to track my progress. The live classes and chat features make learning interactive."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SR</div>
+                            <div class="author-info">
+                                <h4>Sarah Roberts</h4>
+                                <p>Student, Web Development</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The admin dashboard gives me complete visibility into course performance and user engagement. It's made managing our programs so much easier."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MP</div>
+                            <div class="author-info">
+                                <h4>Michael Patel</h4>
+                                <p>Administrator</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Transform Your Learning Experience?</h2>
+                <p>Join Skill Sharp 365 Innovation LMS today and bridge the gap between education and industry.</p>
+                <button class="btn btn-primary">Get Started Now</button>
+            </div>
+        </section>
+
+        <!-- Developer Section -->
+        <section class="developer-section">
+            <div class="container">
+                <div class="developer-container">
+                    <div class="developer-avatar">
+                        <i class="fas fa-code" aria-hidden="true"></i>
+                    </div>
+                    <div class="developer-info">
+                        <h3>About the Developer</h3>
+                        <p>This Learning Management System was developed by <strong>Akarsh Chaturvedi</strong>, a passionate full-stack developer specializing in creating modern, responsive web applications with clean code and user-friendly interfaces.</p>
+                        <p>With expertise in HTML, CSS, JavaScript, and various frameworks, Akarsh focuses on building solutions that bridge the gap between technology and user needs.</p>
+                        <div class="developer-links">
+                            <a href="https://akarshyash.github.io/My_Digital-Card/" target="_blank" rel="noopener noreferrer" title="View Digital Portfolio">
+                                <i class="fas fa-globe" aria-hidden="true"></i>
+                                Digital Portfolio
+                            </a>
+                            <a href="mailto:chaturvediakarsh51@gmail.com" title="Send Email">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                Email
+                            </a>
+                            <a href="https://www.linkedin.com/in/akarsh-chaturvedi-259271236" target="_blank" rel="noopener noreferrer" title="Connect on LinkedIn">
+                                <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact">
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-column">
+                        <h3>Skill Sharp 365</h3>
+                        <p>Bridging the gap between education and industry with high-impact projects, training, and consultancy.</p>
+                        <div class="social-links">
+                            <a href="#" title="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                            <a href="#" title="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#dashboard">Dashboard</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Computer Networking</a></li>
+                            <li><a href="#">Cybersecurity</a></li>
+                            <li><a href="#">Web Development</a></li>
+                            <li><a href="#">Mobile App Development</a></li>
+                            <li><a href="#">Cloud Management</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><i class="fas fa-phone" aria-hidden="true"></i> +91 8610466195</li>
+                            <li><i class="fas fa-envelope" aria-hidden="true"></i> info@skillsharp365.com</li>
+                            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Skill Sharp 365 Innovation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2023 Skill Sharp 365 Innovation. All rights reserved. | Developed by Akarsh Chaturvedi</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div class="dashboard" id="dashboardPage">
+        <div class="dashboard-header">
+            <div class="container dashboard-nav">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    <h1>Skill Sharp <span>365</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Dashboard</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Assignments</a></li>
+                        <li><a href="#">Live Classes</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <div class="user-avatar">SR</div>
+                    <span>Sarah Roberts</span>
+                    <button class="btn btn-outline" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-main">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <div class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a href="#" class="active"><i class="fas fa-home" aria-hidden="true"></i> Dashboard</a></li>
+                            <li><a href="#"><i class="fas fa-book-open" aria-hidden="true"></i> My Courses</a></li>
+                            <li><a href="#"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Schedule</a></li>
+                            <li><a href="#"><i class="fas fa-tasks" aria-hidden="true"></i> Assignments</a></li>
+                            <li><a href="#"><i class="fas fa-file-alt" aria-hidden="true"></i> Notes</a></li>
+                            <li><a href="#"><i class="fas fa-chart-bar" aria-hidden="true"></i> Progress</a></li>
+                            <li><a href="#"><i class="fas fa-comments" aria-hidden="true"></i> Messages</a></li>
+                            <li><a href="#"><i class="fas fa-cog" aria-hidden="true"></i> Settings</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-content">
+                        <div class="content-header">
+                            <h2>Welcome back, Sarah!</h2>
+                            <div class="date-display">Monday, October 16, 2023</div>
+                        </div>
+
+                        <div class="stats-cards">
+                            <div class="stat-card">
+                                <h3>4</h3>
+                                <p>Enrolled Courses</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>12</h3>
+                                <p>Assignments Due</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>2</h3>
+                                <p>Live Classes Today</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>78%</h3>
+                                <p>Overall Progress</p>
+                            </div>
+                        </div>
+
+                        <h3>My Courses</h3>
+                        <div class="courses-grid">
+                            <div class="course-card">
+                                <div class="course-image web-dev">
+                                    <i class="fas fa-laptop-code fa-3x" aria-hidden="true"></i>
+                                </div>
+                                <div class="course-content">
+                                    <h3>Web Development Fundamentals</h3>
+                                    <p>Learn HTML, CSS, and JavaScript to build responsive websites.</p>
+                                    <div class="course-meta">
+                                        <span><i class="far fa-clock" aria-hidden="true"></i> 12 weeks</span>
+                                        <span><i class="fas fa-signal" aria-hidden="true"></i> Beginner</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress progress-85"></div>
+                                    </div>
+                                    <div class="course-meta">
+                                        <span>85% Complete</span>
+                                        <button class="btn btn-primary">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-card">
+                                <div class="course-image cybersecurity">
+                                    <i class="fas fa-shield-alt fa-3x" aria-hidden="true"></i>
+                                </div>
+                                <div class="course-content">
+                                    <h3>Cybersecurity Essentials</h3>
+                                    <p>Understand security principles and protect against cyber threats.</p>
+                                    <div class="course-meta">
+                                        <span><i class="far fa-clock" aria-hidden="true"></i> 10 weeks</span>
+                                        <span><i class="fas fa-signal" aria-hidden="true"></i> Intermediate</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress progress-60"></div>
+                                    </div>
+                                    <div class="course-meta">
+                                        <span>60% Complete</span>
+                                        <button class="btn btn-primary">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-card">
+                                <div class="course-image cloud">
+                                    <i class="fas fa-cloud fa-3x" aria-hidden="true"></i>
+                                </div>
+                                <div class="course-content">
+                                    <h3>Cloud Management</h3>
+                                    <p>Master AWS, Azure, and Google Cloud platforms.</p>
+                                    <div class="course-meta">
+                                        <span><i class="far fa-clock" aria-hidden="true"></i> 8 weeks</span>
+                                        <span><i class="fas fa-signal" aria-hidden="true"></i> Advanced</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress progress-30"></div>
+                                    </div>
+                                    <div class="course-meta">
+                                        <span>30% Complete</span>
+                                        <button class="btn btn-primary">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Classes Section -->
+                        <div class="live-classes">
+                            <div class="content-header">
+                                <h3>Live Classes</h3>
+                                <a href="#" class="btn btn-primary">View All</a>
+                            </div>
+                            <div class="classes-grid">
+                                <div class="class-card live">
+                                    <div class="class-header">
+                                        <h3>Advanced JavaScript</h3>
+                                        <span class="class-status status-live">LIVE NOW</span>
+                                    </div>
+                                    <p>Exploring advanced JavaScript concepts and frameworks.</p>
+                                    <div class="class-meta">
+                                        <span><i class="far fa-clock" aria-hidden="true"></i> 10:00 AM - 11:30 AM</span>
+                                        <button class="btn btn-primary">Join Class</button>
+                                    </div>
+                                </div>
+
+                                <div class="class-card upcoming">
+                                    <div class="class-header">
+                                        <h3>Network Security</h3>
+                                        <span class="class-status status-upcoming">UPCOMING</span>
+                                    </div>
+                                    <p>Understanding network vulnerabilities and protection methods.</p>
+                                    <div class="class-meta">
+                                        <span><i class="far fa-clock" aria-hidden="true"></i> 2:00 PM - 3:30 PM</span>
+                                        <button class="btn btn-outline">Add to Calendar</button>
+                                    </div>
+                                </div>
+
+                                <div class="class-card completed">
+                                    <div class="class-header">
+                                        <h3>Database Design</h3>
+                                        <span class="class-status status-completed">COMPLETED</span>
+                                    </div>
+                                    <p>Fundamentals of database design and normalization.</p>
+                                    <div class="class-meta">
+                                        <span><i class="far fa-clock" aria-hidden="true"></i> Yesterday</span>
+                                        <button class="btn btn-outline">View Recording</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Assignments Section -->
+                        <div class="assignments-section">
+                            <div class="content-header">
+                                <h3>Recent Assignments</h3>
+                                <a href="#" class="btn btn-primary">View All</a>
+                            </div>
+                            <div class="assignments-list">
+                                <div class="assignment-item">
+                                    <div class="assignment-info">
+                                        <h3>JavaScript Project - E-commerce Site</h3>
+                                        <p>Web Development Fundamentals</p>
+                                    </div>
+                                    <div class="assignment-due">
+                                        <span class="due-date due-soon">Due Tomorrow</span>
+                                        <button class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+
+                                <div class="assignment-item">
+                                    <div class="assignment-info">
+                                        <h3>Security Threat Analysis</h3>
+                                        <p>Cybersecurity Essentials</p>
+                                    </div>
+                                    <div class="assignment-due">
+                                        <span class="due-date">Due in 3 days</span>
+                                        <button class="btn btn-outline">Start</button>
+                                    </div>
+                                </div>
+
+                                <div class="assignment-item">
+                                    <div class="assignment-info">
+                                        <h3>Cloud Architecture Design</h3>
+                                        <p>Cloud Management</p>
+                                    </div>
+                                    <div class="assignment-due">
+                                        <span class="due-date">Due in 1 week</span>
+                                        <button class="btn btn-outline">Start</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notes Section -->
+                        <div class="notes-section">
+                            <div class="content-header">
+                                <h3>My Notes</h3>
+                                <a href="#" class="btn btn-primary">Add New Note</a>
+                            </div>
+                            <div class="notes-grid">
+                                <div class="note-card">
+                                    <div class="note-actions">
+                                        <button><i class="fas fa-edit" aria-hidden="true"></i></button>
+                                        <button><i class="fas fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                    <h3>JavaScript Closures</h3>
+                                    <p>Closures allow functions to access variables from an enclosing scope even after it leaves the scope in which it was declared.</p>
+                                    <div class="note-meta">
+                                        <span>Web Development</span>
+                                        <span>2 days ago</span>
+                                    </div>
+                                </div>
+
+                                <div class="note-card">
+                                    <div class="note-actions">
+                                        <button><i class="fas fa-edit" aria-hidden="true"></i></button>
+                                        <button><i class="fas fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                    <h3>SQL Injection Prevention</h3>
+                                    <p>Use parameterized queries and input validation to prevent SQL injection attacks in web applications.</p>
+                                    <div class="note-meta">
+                                        <span>Cybersecurity</span>
+                                        <span>1 week ago</span>
+                                    </div>
+                                </div>
+
+                                <div class="note-card">
+                                    <div class="note-actions">
+                                        <button><i class="fas fa-edit" aria-hidden="true"></i></button>
+                                        <button><i class="fas fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                    <h3>AWS Services Overview</h3>
+                                    <p>EC2 for computing, S3 for storage, RDS for databases, and Lambda for serverless functions.</p>
+                                    <div class="note-meta">
+                                        <span>Cloud Management</span>
+                                        <span>3 weeks ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-tabs">
+                <div class="modal-tab active" data-tab="login">Login</div>
+                <div class="modal-tab" data-tab="register">Register</div>
+            </div>
+            <div id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                </div>
+                <div class="form-group">
+                    <label for="userType">User Type</label>
+                    <select id="userType" class="form-control">
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button class="form-button" id="loginSubmit">Login</button>
+            </div>
+            <div id="registerForm" class="register-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="form-control" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" class="form-control" placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="regUserType">User Type</label>
+                    <select id="regUserType" class="form-control">
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                <button class="form-button">Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-toggle" id="chatbotToggle">
+            <i class="fas fa-robot" aria-hidden="true"></i>
+        </div>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3>Skill Sharp Assistant</h3>
+                <span id="closeChatbot"><i class="fas fa-times" aria-hidden="true"></i></span>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot">
+                    Hello! I'm your Skill Sharp assistant. How can I help you today?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message...">
+                <button id="sendMessage"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.querySelector('.close-modal');
+        const modalTabs = document.querySelectorAll('.modal-tab');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const loginSubmit = document.getElementById('loginSubmit');
+        const viewDashboardBtn = document.getElementById('viewDashboardBtn');
+        const demoDashboardBtn = document.getElementById('demoDashboardBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const landingPage = document.getElementById('landingPage');
+        const dashboardPage = document.getElementById('dashboardPage');
+
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            modalTabs[0].classList.add('active');
+            modalTabs[1].classList.remove('active');
+        });
+
+        registerBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+            modalTabs[0].classList.remove('active');
+            modalTabs[1].classList.add('active');
+        });
+
+        closeModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        modalTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.getAttribute('data-tab');
+                
+                modalTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                if (tabName === 'login') {
+                    loginForm.style.display = 'block';
+                    registerForm.style.display = 'none';
+                } else {
+                    loginForm.style.display = 'none';
+                    registerForm.style.display = 'block';
+                }
+            });
+        });
+
+        // Dashboard navigation
+        viewDashboardBtn.addEventListener('click', showDashboard);
+        demoDashboardBtn.addEventListener('click', showDashboard);
+        loginSubmit.addEventListener('click', showDashboard);
+        
+        logoutBtn.addEventListener('click', () => {
+            landingPage.style.display = 'block';
+            dashboardPage.style.display = 'none';
+        });
+
+        function showDashboard() {
+            landingPage.style.display = 'none';
+            dashboardPage.style.display = 'block';
+            loginModal.style.display = 'none';
+        }
+
+        // Chart for dashboard preview
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('dashboardChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Web Dev', 'Cybersecurity', 'Networking', 'Mobile Dev', 'Cloud', 'Database'],
+                    datasets: [{
+                        label: 'Course Progress',
+                        data: [85, 70, 60, 75, 65, 80],
+                        backgroundColor: [
+                            '#00a651',
+                            '#008c46',
+                            '#006b36',
+                            '#00a651',
+                            '#008c46',
+                            '#006b36'
+                        ],
+                        borderColor: [
+                            '#00a651',
+                            '#008c46',
+                            '#006b36',
+                            '#00a651',
+                            '#008c46',
+                            '#006b36'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                color: '#ffffff'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#ffffff'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ffffff'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Chatbot functionality
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const sendMessage = document.getElementById('sendMessage');
+
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.style.display = 'flex';
+        });
+
+        closeChatbot.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+        });
+
+        sendMessage.addEventListener('click', sendChatMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+
+        function sendChatMessage() {
+            const message = chatbotInput.value.trim();
+            if (message === '') return;
+
+            // Add user message
+            addMessage(message, 'user');
+            chatbotInput.value = '';
+
+            // Simulate bot response after a short delay
+            setTimeout(() => {
+                const botResponse = generateBotResponse(message);
+                addMessage(botResponse, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = text;
+            chatbotMessages.appendChild(messageElement);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function generateBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                return "Hello! How can I assist you with your learning today?";
+            } else if (lowerMessage.includes('course') || lowerMessage.includes('class')) {
+                return "I can help you with course information. Which course are you interested in?";
+            } else if (lowerMessage.includes('assignment') || lowerMessage.includes('homework')) {
+                return "You can find all your assignments in the 'Assignments' section of your dashboard.";
+            } else if (lowerMessage.includes('live') || lowerMessage.includes('schedule')) {
+                return "Check the 'Live Classes' section for upcoming sessions and join links.";
+            } else if (lowerMessage.includes('note') || lowerMessage.includes('material')) {
+                return "Your notes and study materials are available in the 'Notes' section.";
+            } else if (lowerMessage.includes('progress') || lowerMessage.includes('grade')) {
+                return "You can track your progress in the 'Progress' section of your dashboard.";
+            } else if (lowerMessage.includes('help')) {
+                return "I can help with course information, assignments, live classes, notes, and progress tracking. What do you need help with?";
+            } else {
+                return "I'm here to help with your learning journey. You can ask me about courses, assignments, live classes, notes, or your progress.";
+            }
+        }
+    </script>
+</body>
+</html>
