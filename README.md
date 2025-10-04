@@ -53,6 +53,9 @@ This project is built as a single-page, responsive web application using **HTML,
 
 A sleek and inviting landing page that introduces users to the platform's core features, services, and testimonials. It includes sections for the hero, features, services, dashboard preview, and a call to action.
 
+https://github.com/user-attachments/assets/ead0871f-bbb9-439b-a689-f67bd4b43996
+
+
 #### Interactive Dashboard
 
 The student dashboard provides a quick overview of key metrics, including enrolled courses, pending assignments, and live classes. The progress bars and stats cards offer an at-a-glance view of a student's academic standing.
